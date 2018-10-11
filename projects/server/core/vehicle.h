@@ -24,10 +24,14 @@ void on_car_create(librg_event_t *event) {
     librg_data_wu16(event->data, car->model);
     librg_data_wu8(event->data,  car->state);
     librg_data_wptr(event->data, &car->stream, sizeof(car->stream));
+
+    if (librg_entity_control_get(event->ctx, event->entity->id) == NULL) {
+        librg_entity_control_set(event->ctx, event->entity->id, event->peer);
+    }
 }
 
 void on_car_remove(librg_event_t *event) {
-
+    // cycle tru all clients, within the range and make one of them a streamer
 }
 
 // =======================================================================//
@@ -74,7 +78,7 @@ void on_car_exit(librg_message_t *msg) {
     auto ped     = m2o_ped_get(player);
 
     mod_log("player: %d is trying to leave his current car\n", player->id);
-    librg_entity_control_remove(msg->ctx, ped->vehicle);
+    // librg_entity_control_remove(msg->ctx, ped->vehicle);
 
     mod_message_send_instream_except(msg->ctx, M2O_CAR_EXIT, player->id, player->client_peer, [&](librg_data_t *data) {
         librg_data_wu32(data, player->id);

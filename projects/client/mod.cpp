@@ -449,4 +449,11 @@ void m2o_module::tick(M2::I_TickedModuleCallEventContext &) {
         print_posm(curpos, "direction");
         mod_log("moving ped to your location");
     }
+
+    static cef_handle brw;
+    if (input_key_down(VK_F10)) {
+        int w, h;
+        gfx_util_screensize(&w, &h);
+        brw = cef_browser_create("http://google.com", w, h, 50);
+    }
 }
