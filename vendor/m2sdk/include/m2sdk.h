@@ -171,6 +171,7 @@ namespace M2 {
 #include "classes/CProgramsDB.hpp"
 #include "classes/CRadio.hpp"
 #include "classes/CRangeMeter.hpp"
+#include "classes/CRefPtr.hpp"
 #include "classes/CRenderCamera.hpp"
 #include "classes/CResources.hpp"
 #include "classes/CReticle.hpp"
@@ -186,6 +187,7 @@ namespace M2 {
 #include "classes/CSlot.hpp"
 #include "classes/CSlotManager.hpp"
 #include "classes/CSlotWrapper.hpp"
+#include "classes/CSpeechSlotManager.hpp"
 #include "classes/CSpeedometer.hpp"
 #include "classes/CSyncObject.hpp"
 #include "classes/CTableData.hpp"
@@ -203,6 +205,7 @@ namespace M2 {
 #include "classes/CWrappersList.hpp"
 #include "classes/CHuman2CarWrapper.hpp"
 #include "classes/IActorActionModule.hpp"
+#include "classes/ISysAudio.hpp"
 #include "classes/SAgentCommandAim.hpp"
 #include "classes/SAgentCommandLookAt.hpp"
 #include "classes/SLightManager.hpp"
@@ -569,9 +572,9 @@ void M2::InitializeSDKHandlers()
     });
 
     M2::C_CarActionBreakIn_Hooks::HookTestAction([&](C_Car * car) {
-        return true;
+        return false;
     });
-
+    
     M2::C_CarActionTankFuel_Hooks::HookTestAction([&](C_Car * car) {
         m2sdk_event event = { 0 }; {
             event.arg1 = (void *)car;
@@ -582,7 +585,7 @@ void M2::InitializeSDKHandlers()
     });
 
     M2::C_CarActionThrowFrom_Hooks::HookTestAction([&](C_Car * car) {
-        return true;
+        return false;
     });
 
     M2::C_Human2CarWrapper_Hooks::HookIsFreeToGetIn([&](C_Car * car) {
