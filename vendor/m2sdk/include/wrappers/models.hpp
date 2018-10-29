@@ -5,7 +5,7 @@
 
 #include "m2sdk.h"
 
-#define M2_CAR_MODELS 54
+#define M2_CAR_MODELS 55
 #define M2_PED_MODELS 175
 
 #define MODELMGR_MAX			1000
@@ -17,6 +17,7 @@
 
 static char * VehicleModels[M2_CAR_MODELS] =
 {
+    "delizia_grandeamerica",
     "ascot_baileys200_pha",			"berkley_kingfisher_pha",			"fuel_tank",
     "gai_353_military_truck",		"hank_b",							"hank_fueltank",					"hot_rod_1",
     "hot_rod_2",					"hot_rod_3",						"houston_wasp_pha",					"isw_508",					"jeep",

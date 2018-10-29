@@ -204,6 +204,9 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD reason, LPVOID lpReserved) {
             vfs_override_set("sdsconfig.bin",   (modpath + "\\files\\sdsconfig.bin").c_str());
             vfs_override_set("freeride.sds", (modpath + "\\files\\sky_m2o.sds").c_str()); 
             vfs_override_set("StreamMapa.bin", (modpath + "\\files\\StreamMapa.bin").c_str());
+            vfs_override_set("delizia_grandeamerica.sds", (modpath + "\\files\\delizia_grandeamerica.sds").c_str());
+            vfs_override_set("delizia_grandeamerica_z.sds", (modpath + "\\files\\delizia_grandeamerica_z.sds").c_str());
+            vfs_override_set("StreamMapa.bin", (modpath + "\\files\\StreamMapaM2ONew.bin").c_str());
 
             /* attach input manager hooks */
             input_init();

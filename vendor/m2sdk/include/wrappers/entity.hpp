@@ -71,9 +71,32 @@ M2::C_Entity *M2::Wrappers::CreateEntity(eEntityType type, int modelID)
         }
         break;
 
+        /*
         case MOD_ENTITY_CAR:
         {
             M2::Models::GetVehicleModelFromID(modelID, &dir, &model);
+
+            pPedModelManager = pModelManager->Load(dir.c_str(), model.c_str());
+            m2sdk_assert(pPedModelManager);
+
+            entity = reinterpret_cast<M2::C_Entity*>(M2::C_EntityFactory::Get()->CreateEntity<M2::C_Car>(M2::EntityTypes::Entity_Car));
+            m2sdk_assert(entity);
+        }
+        */
+
+        case MOD_ENTITY_CAR:
+        {
+            if (modelID > 0) {
+                M2::Models::GetVehicleModelFromID(modelID, &dir, &model);
+            }
+            else {
+                switch (modelID) {
+                case 0:
+                    dir = "/sds/cars/";
+                    model = "delizia_grandeamerica";
+                    break;
+                }
+            }
 
             pPedModelManager = pModelManager->Load(dir.c_str(), model.c_str());
             m2sdk_assert(pPedModelManager);

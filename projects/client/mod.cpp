@@ -422,7 +422,7 @@ void m2o_module::tick(M2::I_TickedModuleCallEventContext &) {
     }
 
     if (GetAsyncKeyState(VK_F6) & 0x1) {
-        char *fileName = M2::C_Tables::Get()->GetModelFileName(M2::EntityTypes::Entity_Car, 5);
+        char *fileName = M2::C_Tables::Get()->GetModelFileName(M2::EntityTypes::Entity_Car, 0);
         mod_log("Veh file : %s\n", fileName);
 
         M2::CModelManager::Get().OpenModel(M2::EntityTypes::Entity_Car, fileName);
@@ -442,10 +442,14 @@ void m2o_module::tick(M2::I_TickedModuleCallEventContext &) {
         mod_log("moving ped to your location");
     }
 
-    static cef_handle brw;
+    /*static cef_handle brw;
     if (input_key_down(VK_F10)) {
         int w, h;
         gfx_util_screensize(&w, &h);
         brw = cef_browser_create("http://google.com", w, h, 50);
+    }*/
+
+    if (input_key_down(VK_F10)) {
+        mod_message_send(ctx, M2O_CAR_CREATE, nullptr);
     }
 }
